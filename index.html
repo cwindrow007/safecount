@@ -2,16 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <!-- Ensure the page scales properly on mobile devices -->
+  <!-- Ensure proper mobile scaling -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Safe Counter</title>
   <style>
-    /* Basic mobile-friendly styles */
     body {
       font-family: Arial, sans-serif;
+      background: #f5f5f5;
       margin: 0;
       padding: 10px;
-      background-color: #f5f5f5;
     }
     h1 {
       text-align: center;
@@ -34,9 +33,8 @@
     label {
       display: block;
       margin-bottom: 5px;
-      font-weight: bold;
     }
-    input[type="number"] {
+    input[type="number"], select {
       width: 100%;
       padding: 8px;
       margin-bottom: 10px;
@@ -66,73 +64,139 @@
 <body>
   <h1>Safe Counter</h1>
   <form id="safeForm">
-    <!-- Banded Cash: User enters a number from 1 to 15 (representing thousands) -->
+    <!-- Banded Cash -->
     <fieldset>
       <legend>Banded Cash (in thousands)</legend>
-      <label for="bandedCash">Enter thousands (1–15):</label>
-      <input type="number" id="bandedCash" name="bandedCash" min="1" max="15" required>
+      <label for="bandedCash">Select Thousands (1–15):</label>
+      <select id="bandedCash" name="bandedCash">
+        <option value="1">1,000</option>
+        <option value="2">2,000</option>
+        <option value="3">3,000</option>
+        <option value="4">4,000</option>
+        <option value="5">5,000</option>
+        <option value="6">6,000</option>
+        <option value="7">7,000</option>
+        <option value="8">8,000</option>
+        <option value="9">9,000</option>
+        <option value="10">10,000</option>
+        <option value="11">11,000</option>
+        <option value="12">12,000</option>
+        <option value="13">13,000</option>
+        <option value="14">14,000</option>
+        <option value="15">15,000</option>
+      </select>
     </fieldset>
 
-    <!-- Coins: Four sections -->
+    <!-- Coins -->
     <fieldset>
       <legend>Coins</legend>
-      <label for="quarters">Number of Quarters ($0.25 each):</label>
-      <input type="number" id="quarters" name="quarters" min="0" value="0">
-      <label for="dimes">Number of Dimes ($0.10 each):</label>
-      <input type="number" id="dimes" name="dimes" min="0" value="0">
-      <label for="nickels">Number of Nickels ($0.05 each):</label>
-      <input type="number" id="nickels" name="nickels" min="0" value="0">
-      <label for="pennies">Number of Pennies ($0.01 each):</label>
-      <input type="number" id="pennies" name="pennies" min="0" value="0">
+      
+      <!-- Quarters -->
+      <fieldset>
+        <legend>Quarters</legend>
+        <label for="quartersBox500">Boxes ($500 each, max 10):</label>
+        <input type="number" id="quartersBox500" name="quartersBox500" min="0" max="10" value="0" onfocus="this.select()">
+        
+        <label for="quartersBox100">Boxes ($100 each, max 10):</label>
+        <input type="number" id="quartersBox100" name="quartersBox100" min="0" max="10" value="0" onfocus="this.select()">
+        
+        <label for="quartersRolls">Rolls ($10 each, max 9):</label>
+        <input type="number" id="quartersRolls" name="quartersRolls" min="0" max="9" value="0" onfocus="this.select()">
+      </fieldset>
+      
+      <!-- Dimes -->
+      <fieldset>
+        <legend>Dimes</legend>
+        <label for="dimesBox250">Boxes ($250 each, max 10):</label>
+        <input type="number" id="dimesBox250" name="dimesBox250" min="0" max="10" value="0" onfocus="this.select()">
+        
+        <label for="dimesBox100">Boxes ($100 each, max 10):</label>
+        <input type="number" id="dimesBox100" name="dimesBox100" min="0" max="10" value="0" onfocus="this.select()">
+        
+        <label for="dimesRolls">Rolls ($5 each, max 19):</label>
+        <input type="number" id="dimesRolls" name="dimesRolls" min="0" max="19" value="0" onfocus="this.select()">
+      </fieldset>
+      
+      <!-- Nickels -->
+      <fieldset>
+        <legend>Nickels</legend>
+        <label for="nickelsBox100">Boxes ($100 each, max 10):</label>
+        <input type="number" id="nickelsBox100" name="nickelsBox100" min="0" max="10" value="0" onfocus="this.select()">
+        
+        <label for="nickelsBox20">Boxes ($20 each, max 10):</label>
+        <input type="number" id="nickelsBox20" name="nickelsBox20" min="0" max="10" value="0" onfocus="this.select()">
+        
+        <label for="nickelsRolls">Rolls ($2 each, max 9):</label>
+        <input type="number" id="nickelsRolls" name="nickelsRolls" min="0" max="9" value="0" onfocus="this.select()">
+      </fieldset>
+      
+      <!-- Pennies -->
+      <fieldset>
+        <legend>Pennies</legend>
+        <label for="penniesBox25">Boxes ($25 each, max 10):</label>
+        <input type="number" id="penniesBox25" name="penniesBox25" min="0" max="10" value="0" onfocus="this.select()">
+        
+        <label for="penniesBox10">Boxes ($10 each, max 10):</label>
+        <input type="number" id="penniesBox10" name="penniesBox10" min="0" max="10" value="0" onfocus="this.select()">
+        
+        <label for="penniesRolls">Rolls ($0.50 each, max 19):</label>
+        <input type="number" id="penniesRolls" name="penniesRolls" min="0" max="19" value="0" onfocus="this.select()">
+      </fieldset>
     </fieldset>
 
-    <!-- Singles and Fives: Two sections -->
+    <!-- Singles and Fives -->
     <fieldset>
-      <legend>Singles and Fives</legend>
-      <label for="singles">Number of Singles ($1 each):</label>
-      <input type="number" id="singles" name="singles" min="0" value="0">
-      <label for="fives">Number of Fives ($5 each):</label>
-      <input type="number" id="fives" name="fives" min="0" value="0">
+      <legend>Singles and Fives (in Bands)</legend>
+      <label for="singles">Singles (bands of $100, select from 0 to 4000):</label>
+      <select id="singles" name="singles"></select>
+      
+      <label for="fives">Fives (bands of $500, select from 0 to 4000):</label>
+      <select id="fives" name="fives"></select>
     </fieldset>
 
     <!-- Manual Cash -->
     <fieldset>
       <legend>Manual Cash</legend>
       <label for="manualCash">Enter amount:</label>
-      <input type="number" id="manualCash" name="manualCash" min="0" value="0">
+      <input type="number" id="manualCash" name="manualCash" min="0" value="0" onfocus="this.select()">
     </fieldset>
 
-    <!-- Stamps: Two sections with fixed quantities -->
+    <!-- Stamps -->
     <fieldset>
       <legend>Stamps</legend>
-      <label for="fullBook">Full Books (each = 100 stamps):</label>
-      <input type="number" id="fullBook" name="fullBook" min="0" value="0">
-      <label for="quarterBook">Quarter Books (each = 25 stamps):</label>
-      <input type="number" id="quarterBook" name="quarterBook" min="0" value="0">
-      <!-- The cost per stamp is 14.60 -->
+      <label for="stampsFullBook">Full Book (100 stamps per, select 1 to 10):</label>
+      <select id="stampsFullBook" name="stampsFullBook"></select>
+      
+      <label for="stampsQuarterBook">Quarter Book (25 stamps per, select 1 to 10):</label>
+      <select id="stampsQuarterBook" name="stampsQuarterBook"></select>
     </fieldset>
 
-    <!-- Lottery: Six sections -->
+    <!-- Lottery -->
     <fieldset>
       <legend>Lottery</legend>
-      <label for="lottery200">Section 1 (200 each):</label>
-      <input type="number" id="lottery200" name="lottery200" min="0" value="0">
-      <label for="lottery300">Section 2 (300 each):</label>
-      <input type="number" id="lottery300" name="lottery300" min="0" value="0">
-      <label for="lottery500">Section 3 (500 each):</label>
-      <input type="number" id="lottery500" name="lottery500" min="0" value="0">
-      <label for="lottery600">Section 4 (600 each):</label>
-      <input type="number" id="lottery600" name="lottery600" min="0" value="0">
-      <label for="lottery1000">Section 5 (1000 each):</label>
-      <input type="number" id="lottery1000" name="lottery1000" min="0" value="0">
-      <label for="lotteryRandom">Section 6 (Enter a value between 0 and 10,000 – no multiplier):</label>
-      <input type="number" id="lotteryRandom" name="lotteryRandom" min="0" max="10000" value="0">
+      <label for="lottery200">Section 1 (200 each, select 0 to 20):</label>
+      <select id="lottery200" name="lottery200"></select>
+      
+      <label for="lottery300">Section 2 (300 each, select 0 to 20):</label>
+      <select id="lottery300" name="lottery300"></select>
+      
+      <label for="lottery500">Section 3 (500 each, select 0 to 20):</label>
+      <select id="lottery500" name="lottery500"></select>
+      
+      <label for="lottery600">Section 4 (600 each, select 0 to 20):</label>
+      <select id="lottery600" name="lottery600"></select>
+      
+      <label for="lottery1000">Section 5 (1000 each, select 0 to 20):</label>
+      <select id="lottery1000" name="lottery1000"></select>
+      
+      <label for="lotteryRandom">Section 6 (Random amount, enter value between 0 and 10,000):</label>
+      <input type="number" id="lotteryRandom" name="lotteryRandom" min="0" max="10000" value="0" onfocus="this.select()">
     </fieldset>
 
     <button type="button" onclick="calculateSafe()">Calculate</button>
   </form>
 
-  <!-- Results section (hidden until calculated) -->
+  <!-- Results Section -->
   <div id="results" class="result" style="display:none;">
     <h2>Results</h2>
     <p id="resultBandedCash"></p>
@@ -145,33 +209,77 @@
   </div>
 
   <script>
+    // Utility function to populate select menus
+    function populateSelect(selectId, start, end, step) {
+      const select = document.getElementById(selectId);
+      for (let i = start; i <= end; i += step) {
+        const option = document.createElement('option');
+        option.value = i;
+        option.textContent = i;
+        select.appendChild(option);
+      }
+    }
+    
+    // Populate Singles: 0 to 4000 in increments of 100
+    populateSelect('singles', 0, 4000, 100);
+    // Populate Fives: 0 to 4000 in increments of 500
+    populateSelect('fives', 0, 4000, 500);
+    // Populate Stamps (Full Book and Quarter Book): 1 to 10
+    populateSelect('stampsFullBook', 1, 10, 1);
+    populateSelect('stampsQuarterBook', 1, 10, 1);
+    // Populate Lottery sections (Sections 1-5): 0 to 20
+    populateSelect('lottery200', 0, 20, 1);
+    populateSelect('lottery300', 0, 20, 1);
+    populateSelect('lottery500', 0, 20, 1);
+    populateSelect('lottery600', 0, 20, 1);
+    populateSelect('lottery1000', 0, 20, 1);
+    
     function calculateSafe() {
-      // Banded Cash (input is in thousands)
-      const bandedCashInput = parseFloat(document.getElementById('bandedCash').value) || 0;
-      const bandedCashTotal = bandedCashInput * 1000;
+      // Banded Cash: multiply selected thousand by 1000
+      const bandedCash = parseInt(document.getElementById('bandedCash').value) * 1000;
       
-      // Coins: multiply each coin count by its value
-      const quarters = parseInt(document.getElementById('quarters').value) || 0;
-      const dimes    = parseInt(document.getElementById('dimes').value) || 0;
-      const nickels  = parseInt(document.getElementById('nickels').value) || 0;
-      const pennies  = parseInt(document.getElementById('pennies').value) || 0;
-      const coinTotal = (quarters * 0.25) + (dimes * 0.10) + (nickels * 0.05) + (pennies * 0.01);
+      // Coins calculations:
+      // Quarters
+      const qBox500 = parseInt(document.getElementById('quartersBox500').value) || 0;
+      const qBox100 = parseInt(document.getElementById('quartersBox100').value) || 0;
+      const qRolls  = parseInt(document.getElementById('quartersRolls').value)  || 0;
+      const quartersTotal = (qBox500 * 500) + (qBox100 * 100) + (qRolls * 10);
       
-      // Singles and Fives: calculate total value
+      // Dimes
+      const dBox250 = parseInt(document.getElementById('dimesBox250').value) || 0;
+      const dBox100 = parseInt(document.getElementById('dimesBox100').value) || 0;
+      const dRolls  = parseInt(document.getElementById('dimesRolls').value)  || 0;
+      const dimesTotal = (dBox250 * 250) + (dBox100 * 100) + (dRolls * 5);
+      
+      // Nickels
+      const nBox100 = parseInt(document.getElementById('nickelsBox100').value) || 0;
+      const nBox20  = parseInt(document.getElementById('nickelsBox20').value)  || 0;
+      const nRolls  = parseInt(document.getElementById('nickelsRolls').value)  || 0;
+      const nickelsTotal = (nBox100 * 100) + (nBox20 * 20) + (nRolls * 2);
+      
+      // Pennies
+      const pBox25 = parseInt(document.getElementById('penniesBox25').value) || 0;
+      const pBox10 = parseInt(document.getElementById('penniesBox10').value) || 0;
+      const pRolls  = parseInt(document.getElementById('penniesRolls').value) || 0;
+      const penniesTotal = (pBox25 * 25) + (pBox10 * 10) + (pRolls * 0.5);
+      
+      const coinsTotal = quartersTotal + dimesTotal + nickelsTotal + penniesTotal;
+      
+      // Singles and Fives (the selected value already represents the dollar band)
       const singles = parseInt(document.getElementById('singles').value) || 0;
       const fives   = parseInt(document.getElementById('fives').value) || 0;
-      const singlesFivesTotal = (singles * 1) + (fives * 5);
+      const singlesFivesTotal = singles + fives;
       
-      // Manual Cash: no calculation needed besides reading the value
+      // Manual Cash
       const manualCash = parseFloat(document.getElementById('manualCash').value) || 0;
       
-      // Stamps: calculate total stamps and multiply by the cost (14.60)
-      const fullBook    = parseInt(document.getElementById('fullBook').value) || 0;
-      const quarterBook = parseInt(document.getElementById('quarterBook').value) || 0;
-      const totalStampsCount = (fullBook * 100) + (quarterBook * 25);
+      // Stamps: Calculate total stamps count and then multiply by cost (14.60)
+      const stampsFull = parseInt(document.getElementById('stampsFullBook').value) || 0;
+      const stampsQuarter = parseInt(document.getElementById('stampsQuarterBook').value) || 0;
+      const totalStampsCount = (stampsFull * 100) + (stampsQuarter * 25);
       const stampsTotal = totalStampsCount * 14.60;
       
-      // Lottery: Multiply counts by the respective multipliers (except section 6)
+      // Lottery:
       const lottery200    = parseInt(document.getElementById('lottery200').value) || 0;
       const lottery300    = parseInt(document.getElementById('lottery300').value) || 0;
       const lottery500    = parseInt(document.getElementById('lottery500').value) || 0;
@@ -185,17 +293,17 @@
                            (lottery1000 * 1000) +
                            lotteryRandom;
       
-      // Grand Total: sum all amounts
-      const grandTotal = bandedCashTotal + coinTotal + singlesFivesTotal + manualCash + stampsTotal + lotteryTotal;
+      // Grand Total
+      const grandTotal = bandedCash + coinsTotal + singlesFivesTotal + manualCash + stampsTotal + lotteryTotal;
       
-      // Display the results (formatted to 2 decimal places)
-      document.getElementById('resultBandedCash').textContent = "Banded Cash: $" + bandedCashTotal.toFixed(2);
-      document.getElementById('resultCoins').textContent      = "Coins Total: $" + coinTotal.toFixed(2);
+      // Display results (formatted to two decimals)
+      document.getElementById('resultBandedCash').textContent = "Banded Cash: $" + bandedCash.toFixed(2);
+      document.getElementById('resultCoins').textContent = "Coins Total: $" + coinsTotal.toFixed(2);
       document.getElementById('resultSinglesFives').textContent = "Singles & Fives Total: $" + singlesFivesTotal.toFixed(2);
-      document.getElementById('resultManualCash').textContent   = "Manual Cash: $" + manualCash.toFixed(2);
-      document.getElementById('resultStamps').textContent       = "Stamps Total: $" + stampsTotal.toFixed(2);
-      document.getElementById('resultLottery').textContent      = "Lottery Total: $" + lotteryTotal.toFixed(2);
-      document.getElementById('resultGrandTotal').textContent   = "Grand Total: $" + grandTotal.toFixed(2);
+      document.getElementById('resultManualCash').textContent = "Manual Cash: $" + manualCash.toFixed(2);
+      document.getElementById('resultStamps').textContent = "Stamps Total: $" + stampsTotal.toFixed(2);
+      document.getElementById('resultLottery').textContent = "Lottery Total: $" + lotteryTotal.toFixed(2);
+      document.getElementById('resultGrandTotal').textContent = "Grand Total: $" + grandTotal.toFixed(2);
       
       // Reveal the results section
       document.getElementById('results').style.display = "block";
