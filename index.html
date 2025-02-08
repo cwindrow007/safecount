@@ -95,52 +95,52 @@
       <fieldset>
         <legend>Quarters</legend>
         <label for="quartersBox500">Boxes ($500 each, max 10):</label>
-        <input type="number" id="quartersBox500" name="quartersBox500" min="0" max="10" value="0" onfocus="this.select()">
+        <select id="quartersBox500" name="quartersBox500"></select>
         
         <label for="quartersBox100">Boxes ($100 each, max 10):</label>
-        <input type="number" id="quartersBox100" name="quartersBox100" min="0" max="10" value="0" onfocus="this.select()">
+        <select id="quartersBox100" name="quartersBox100"></select>
         
         <label for="quartersRolls">Rolls ($10 each, max 9):</label>
-        <input type="number" id="quartersRolls" name="quartersRolls" min="0" max="9" value="0" onfocus="this.select()">
+        <select id="quartersRolls" name="quartersRolls"></select>
       </fieldset>
       
       <!-- Dimes -->
       <fieldset>
         <legend>Dimes</legend>
         <label for="dimesBox250">Boxes ($250 each, max 10):</label>
-        <input type="number" id="dimesBox250" name="dimesBox250" min="0" max="10" value="0" onfocus="this.select()">
+        <select id="dimesBox250" name="dimesBox250"></select>
         
         <label for="dimesBox100">Boxes ($100 each, max 10):</label>
-        <input type="number" id="dimesBox100" name="dimesBox100" min="0" max="10" value="0" onfocus="this.select()">
+        <select id="dimesBox100" name="dimesBox100"></select>
         
         <label for="dimesRolls">Rolls ($5 each, max 19):</label>
-        <input type="number" id="dimesRolls" name="dimesRolls" min="0" max="19" value="0" onfocus="this.select()">
+        <select id="dimesRolls" name="dimesRolls"></select>
       </fieldset>
       
       <!-- Nickels -->
       <fieldset>
         <legend>Nickels</legend>
         <label for="nickelsBox100">Boxes ($100 each, max 10):</label>
-        <input type="number" id="nickelsBox100" name="nickelsBox100" min="0" max="10" value="0" onfocus="this.select()">
+        <select id="nickelsBox100" name="nickelsBox100"></select>
         
         <label for="nickelsBox20">Boxes ($20 each, max 10):</label>
-        <input type="number" id="nickelsBox20" name="nickelsBox20" min="0" max="10" value="0" onfocus="this.select()">
+        <select id="nickelsBox20" name="nickelsBox20"></select>
         
         <label for="nickelsRolls">Rolls ($2 each, max 9):</label>
-        <input type="number" id="nickelsRolls" name="nickelsRolls" min="0" max="9" value="0" onfocus="this.select()">
+        <select id="nickelsRolls" name="nickelsRolls"></select>
       </fieldset>
       
       <!-- Pennies -->
       <fieldset>
         <legend>Pennies</legend>
         <label for="penniesBox25">Boxes ($25 each, max 10):</label>
-        <input type="number" id="penniesBox25" name="penniesBox25" min="0" max="10" value="0" onfocus="this.select()">
+        <select id="penniesBox25" name="penniesBox25"></select>
         
         <label for="penniesBox10">Boxes ($10 each, max 10):</label>
-        <input type="number" id="penniesBox10" name="penniesBox10" min="0" max="10" value="0" onfocus="this.select()">
+        <select id="penniesBox10" name="penniesBox10"></select>
         
         <label for="penniesRolls">Rolls ($0.50 each, max 19):</label>
-        <input type="number" id="penniesRolls" name="penniesRolls" min="0" max="19" value="0" onfocus="this.select()">
+        <select id="penniesRolls" name="penniesRolls"></select>
       </fieldset>
     </fieldset>
 
@@ -164,10 +164,10 @@
     <!-- Stamps -->
     <fieldset>
       <legend>Stamps</legend>
-      <label for="stampsFullBook">Full Book (100 stamps per, select 1 to 10):</label>
+      <label for="stampsFullBook">Full Book (100 stamps each, select from 0 to 10):</label>
       <select id="stampsFullBook" name="stampsFullBook"></select>
       
-      <label for="stampsQuarterBook">Quarter Book (25 stamps per, select 1 to 10):</label>
+      <label for="stampsQuarterBook">Quarter Book (25 stamps each, select from 0 to 10):</label>
       <select id="stampsQuarterBook" name="stampsQuarterBook"></select>
     </fieldset>
 
@@ -209,7 +209,7 @@
   </div>
 
   <script>
-    // Utility function to populate select menus
+    // Utility function to populate a select element with options
     function populateSelect(selectId, start, end, step) {
       const select = document.getElementById(selectId);
       for (let i = start; i <= end; i += step) {
@@ -220,13 +220,31 @@
       }
     }
     
-    // Populate Singles: 0 to 4000 in increments of 100
+    // Populate coin select inputs
+    populateSelect('quartersBox500', 0, 10, 1);
+    populateSelect('quartersBox100', 0, 10, 1);
+    populateSelect('quartersRolls', 0, 9, 1);
+    
+    populateSelect('dimesBox250', 0, 10, 1);
+    populateSelect('dimesBox100', 0, 10, 1);
+    populateSelect('dimesRolls', 0, 19, 1);
+    
+    populateSelect('nickelsBox100', 0, 10, 1);
+    populateSelect('nickelsBox20', 0, 10, 1);
+    populateSelect('nickelsRolls', 0, 9, 1);
+    
+    populateSelect('penniesBox25', 0, 10, 1);
+    populateSelect('penniesBox10', 0, 10, 1);
+    populateSelect('penniesRolls', 0, 19, 1);
+    
+    // Populate Singles and Fives
     populateSelect('singles', 0, 4000, 100);
-    // Populate Fives: 0 to 4000 in increments of 500
     populateSelect('fives', 0, 4000, 500);
-    // Populate Stamps (Full Book and Quarter Book): 1 to 10
-    populateSelect('stampsFullBook', 1, 10, 1);
-    populateSelect('stampsQuarterBook', 1, 10, 1);
+    
+    // Populate Stamps (include 0)
+    populateSelect('stampsFullBook', 0, 10, 1);
+    populateSelect('stampsQuarterBook', 0, 10, 1);
+    
     // Populate Lottery sections (Sections 1-5): 0 to 20
     populateSelect('lottery200', 0, 20, 1);
     populateSelect('lottery300', 0, 20, 1);
@@ -235,29 +253,25 @@
     populateSelect('lottery1000', 0, 20, 1);
     
     function calculateSafe() {
-      // Banded Cash: multiply selected thousand by 1000
+      // Banded Cash
       const bandedCash = parseInt(document.getElementById('bandedCash').value) * 1000;
       
-      // Coins calculations:
-      // Quarters
+      // Coins
       const qBox500 = parseInt(document.getElementById('quartersBox500').value) || 0;
       const qBox100 = parseInt(document.getElementById('quartersBox100').value) || 0;
-      const qRolls  = parseInt(document.getElementById('quartersRolls').value)  || 0;
+      const qRolls  = parseInt(document.getElementById('quartersRolls').value) || 0;
       const quartersTotal = (qBox500 * 500) + (qBox100 * 100) + (qRolls * 10);
       
-      // Dimes
       const dBox250 = parseInt(document.getElementById('dimesBox250').value) || 0;
       const dBox100 = parseInt(document.getElementById('dimesBox100').value) || 0;
-      const dRolls  = parseInt(document.getElementById('dimesRolls').value)  || 0;
+      const dRolls  = parseInt(document.getElementById('dimesRolls').value) || 0;
       const dimesTotal = (dBox250 * 250) + (dBox100 * 100) + (dRolls * 5);
       
-      // Nickels
       const nBox100 = parseInt(document.getElementById('nickelsBox100').value) || 0;
-      const nBox20  = parseInt(document.getElementById('nickelsBox20').value)  || 0;
-      const nRolls  = parseInt(document.getElementById('nickelsRolls').value)  || 0;
+      const nBox20  = parseInt(document.getElementById('nickelsBox20').value) || 0;
+      const nRolls  = parseInt(document.getElementById('nickelsRolls').value) || 0;
       const nickelsTotal = (nBox100 * 100) + (nBox20 * 20) + (nRolls * 2);
       
-      // Pennies
       const pBox25 = parseInt(document.getElementById('penniesBox25').value) || 0;
       const pBox10 = parseInt(document.getElementById('penniesBox10').value) || 0;
       const pRolls  = parseInt(document.getElementById('penniesRolls').value) || 0;
@@ -265,7 +279,7 @@
       
       const coinsTotal = quartersTotal + dimesTotal + nickelsTotal + penniesTotal;
       
-      // Singles and Fives (the selected value already represents the dollar band)
+      // Singles and Fives
       const singles = parseInt(document.getElementById('singles').value) || 0;
       const fives   = parseInt(document.getElementById('fives').value) || 0;
       const singlesFivesTotal = singles + fives;
@@ -273,13 +287,13 @@
       // Manual Cash
       const manualCash = parseFloat(document.getElementById('manualCash').value) || 0;
       
-      // Stamps: Calculate total stamps count and then multiply by cost (14.60)
+      // Stamps
       const stampsFull = parseInt(document.getElementById('stampsFullBook').value) || 0;
       const stampsQuarter = parseInt(document.getElementById('stampsQuarterBook').value) || 0;
       const totalStampsCount = (stampsFull * 100) + (stampsQuarter * 25);
       const stampsTotal = totalStampsCount * 14.60;
       
-      // Lottery:
+      // Lottery
       const lottery200    = parseInt(document.getElementById('lottery200').value) || 0;
       const lottery300    = parseInt(document.getElementById('lottery300').value) || 0;
       const lottery500    = parseInt(document.getElementById('lottery500').value) || 0;
@@ -296,7 +310,7 @@
       // Grand Total
       const grandTotal = bandedCash + coinsTotal + singlesFivesTotal + manualCash + stampsTotal + lotteryTotal;
       
-      // Display results (formatted to two decimals)
+      // Display results
       document.getElementById('resultBandedCash').textContent = "Banded Cash: $" + bandedCash.toFixed(2);
       document.getElementById('resultCoins').textContent = "Coins Total: $" + coinsTotal.toFixed(2);
       document.getElementById('resultSinglesFives').textContent = "Singles & Fives Total: $" + singlesFivesTotal.toFixed(2);
