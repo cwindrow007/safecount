@@ -77,11 +77,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         });
 
+        const stampsContainer = document.getElementById("stampFields");
         fields.stamps.ids.forEach((id, index) => {
+                const div = document.createElement("div");
+                div.classList.add("w-full", "p-2");
+                div.innerHTML = `
+                <label class="block text-gray-700">${fields.stamps.labels[index]}:</label>
+                <select id="${id}" class="w-full p-2 border rounded"></select>`;
+
+                stampsContainer.appendChild(div);
                 populateSelect(id, { start: 0, end: fields.stamps.max[index], step: 1 });
         });
+        const lotteryContainer = document.getElementById("lotteryFields");
         fields.lottery.ids.forEach((id, index) => {
-                populateSelect(id, {start: 0, end: fields.lottery.max[index], step: 1});
+                const div = document.createElement("div");
+                div.classList.add("w-full", "p-2");
+                div.innerHTML = `
+                <label class="block text-gray-700">${fields.lottery.labels[index]}:</label>
+                <select id="${id}" class="w-full p-2 border rounded"></select>`;
+                lotteryContainer.appendChild(div);
+                populateSelect(id, { start: 0, end: fields.lottery.max[index], step: 1 });
         });
 });
 
@@ -116,7 +131,7 @@ function calculateSafe() {
 
         });
 
-        lotteryTotal += ("lotteryRandom")
+        lotteryTotal += getInt("lotteryRandom")
 
 
         const singlesFivesTotal = getInt("singles") + getInt("fives");
