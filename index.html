@@ -13,6 +13,8 @@
   <h1 class="text-2xl font-bold text-center text-gray-700 mb-4">Safe Counter</h1>
 
   <form id="safeForm" class="space-y-4">
+
+
     <!-- Banded Cash -->
     <fieldset class="p-4 border rounded-lg bg-gray-50">
       <legend class="font-semibold">Banded Cash (in thousands)</legend>
@@ -20,11 +22,15 @@
       <select id="bandedCash" class="w-full p-2 border rounded"></select>
     </fieldset>
 
-    <!-- Coins -->
+    <!--Manual Cash-->
     <fieldset class="p-4 border rounded-lg bg-gray-50">
-      <legend class="font-semibold">Coins</legend>
-      <div id="coinFields" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      <legend class="font-semibold">Manual Cash (Junk Money)</legend>
+      <div id="manualField" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+      <label for="manualCash" class="block text-gray-700">Manual Cash Amount:</label>
+      <input type="number" id="manualCash" class="w-full p-2 border rounded" min="0" max="3000" value ="0">
     </fieldset>
+
 
     <!-- Singles and Fives -->
     <fieldset class="p-4 border rounded-lg bg-gray-50">
@@ -35,6 +41,15 @@
       <select id="fives" class="w-full p-2 border rounded"></select>
     </fieldset>
 
+    <!--Stamps-->
+    <fieldset class="p-4 border rounded-lg bg-gray-50">
+      <legend class="font-semibold">Stamps</legend>
+      <div id="stampFields" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+    </fieldset>
+
+
+    <!--Lottery-->
+
     <fieldset class="p-4 border rounded-lg bg-gray-50">
       <legend class="font-semibold">Lottery</legend>
       <div id="lotteryFields" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
@@ -43,10 +58,14 @@
       <input type="number" id="lotteryRandom" class="w-full p-2 border rounded" min="0" max="10000" value="0">
     </fieldset>
 
+
+    <!-- Coins -->
+
     <fieldset class="p-4 border rounded-lg bg-gray-50">
-      <legend class="font-semibold">Stamps</legend>
-      <div id="stampFields" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+      <legend class="font-semibold">Coins</legend>
+      <div id="coinFields" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
     </fieldset>
+
 
     <button type="button" id="calculateButton" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
       Calculate

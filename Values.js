@@ -1,5 +1,5 @@
 /**
- * JS file which holds an array of values for users
+ * JS file which holds all logic/values for index.html
  */
 
 /** Data Structure for fields */
@@ -77,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
         });
 
+
         const stampsContainer = document.getElementById("stampFields");
         fields.stamps.ids.forEach((id, index) => {
                 const div = document.createElement("div");
@@ -88,6 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 stampsContainer.appendChild(div);
                 populateSelect(id, { start: 0, end: fields.stamps.max[index], step: 1 });
         });
+
         const lotteryContainer = document.getElementById("lotteryFields");
         fields.lottery.ids.forEach((id, index) => {
                 const div = document.createElement("div");
@@ -105,10 +107,9 @@ const getInt = id => parseInt(document.getElementById(id)?.value) || 0;
 
 /** Calculation logic */
 function calculateSafe() {
-        const bandedCash = getInt("bandedCash") * 1000;
 
+        //Calculate Coin Total
         let coinsTotal = 0;
-
         Object.entries(fields.coins).forEach(([coinType, { ids, values }]) => {
                 ids.forEach((id, index) => {
                         const fullId = `${coinType}-${id}`; // Ensure correct ID format
@@ -117,6 +118,7 @@ function calculateSafe() {
                        });
         });
 
+        //Calculate Stamps Total
         let totalStamps = 0;
         fields.stamps.ids.forEach((id, index) => {
                 const inputValue = getInt(id);
@@ -124,6 +126,8 @@ function calculateSafe() {
         });
         const stampsTotal = totalStamps * fields.stamps.pricePerStamp;
 
+
+        //Calculate Lottery Total
         let lotteryTotal = 0;
         fields.lottery.ids.forEach((id, index) => {
                 const inputValue = getInt(id);
@@ -131,21 +135,24 @@ function calculateSafe() {
 
         });
 
+        //Lottery Random
         lotteryTotal += getInt("lotteryRandom")
 
 
-        const singlesFivesTotal = getInt("singles") + getInt("fives");
-        const manualCash = getInt("manualCash");
-        const grandTotal = bandedCash + coinsTotal + singlesFivesTotal + manualCash;
+        //Calculate Total
+        const bandedCash = getInt("bandedCash") * 1000;
+        const singlesFivesTotal = (getInt("singles") * 100) + (getInt("fives") * 500);
+        const manualCash = getInt("manualCash") || 0;
+        const grandTotal = bandedCash + coinsTotal + singlesFivesTotal + manualCash + lotteryTotal + stampsTotal;
 
         const results = {
                 resultBandedCash: `Banded Cash: $${bandedCash.toFixed(2)}`,
                 resultCoins: `Coins Total: $${coinsTotal.toFixed(2)}`,
                 resultSinglesFives: `Singles & Fives Total: $${singlesFivesTotal.toFixed(2)}`,
                 resultManualCash: `Manual Cash: $${manualCash.toFixed(2)}`,
-                resultsStamps: `Stamps Total: $${stampsTotal.toFixed(2)}`,
+                resultStamps: `Stamps Total: $${stampsTotal.toFixed(2)}`,
                 resultLottery: `Lottery Total: $${lotteryTotal.toFixed(2)}`,
-                resultGrandTotal: `Grand Total: $${grandTotal.toFixed(2)}`
+                resultGrandTotal: `Grand Total: $${grandTotal.toFixed(2)}`,
         };
 
         Object.entries(results).forEach(([id, text]) => (document.getElementById(id).textContent = text));
