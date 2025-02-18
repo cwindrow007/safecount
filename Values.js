@@ -4,9 +4,7 @@
 
 /** Data Structure for fields */
 const fields = {
-        bandedCash: { start: 0, end: 15, step: 1 },
-        singles: { start: 0, end: 40, step: 1 },
-        fives: { start: 0, end: 15, step: 1 },
+        bandedCash: { start: 0, end: 20, step: 1 },
         coins: {
                 quarters: {
                         ids: ["box500", "tray100", "rolls"],
@@ -48,6 +46,19 @@ const fields = {
         }
 };
 
+/** Validation function which prevents non-numeric input* */
+function validateNumberInput(input){
+        input.value = Math.max(0, input.value.replace(/[^0-9]/g, ''));
+}
+/** Prevents typing letters or negative numbers in field */
+document.querySelectorAll('input[type="number"]') .forEach(input => {
+        input.addEventListener('keydown', function(e) {
+                if(e.key ==="e"|| e.key ==="-" || e.key === "+"){
+                        e.preventDefault()
+                }
+        });
+})
+
 /** Utility function to populate select dropdowns */
 function populateSelect(id, { start, end, step }) {
         const select = document.getElementById(id);
@@ -56,10 +67,13 @@ function populateSelect(id, { start, end, step }) {
         }
 }
 
+
+
+
 /** Populate all Fields */
 document.addEventListener("DOMContentLoaded", () => {
-        // Populate Banded Cash, Singles, and Fives
-        ["bandedCash", "singles", "fives"].forEach(field => populateSelect(field, fields[field]));
+        // Populate Banded Cash
+        ["bandedCash"].forEach(field => populateSelect(field, fields[field]));
 
         // Populate Coins Section
         const coinContainer = document.getElementById("coinFields");
@@ -104,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /** Helper function to get integer input values */
 const getInt = id => parseInt(document.getElementById(id)?.value) || 0;
+const getFloat = id => parseFloat (document.getElementById(id)?.value) || 0;
 
 /** Calculation logic */
 function calculateSafe() {
@@ -142,7 +157,7 @@ function calculateSafe() {
         //Calculate Total
         const bandedCash = getInt("bandedCash") * 1000;
         const singlesFivesTotal = (getInt("singles") * 100) + (getInt("fives") * 500);
-        const manualCash = getInt("manualCash") || 0;
+        const manualCash = getFloat("manualCash") || 0;
         const grandTotal = bandedCash + coinsTotal + singlesFivesTotal + manualCash + lotteryTotal + stampsTotal;
 
         const results = {
