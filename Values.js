@@ -5,7 +5,7 @@
 /** Data Structure for fields */
 const fields = {
         bandedCash: { start: 0, end: 15, step: 1 },
-        singles: { start: 0, end: 15, step: 1 },
+        singles: { start: 0, end: 40, step: 1 },
         fives: { start: 0, end: 15, step: 1 },
         coins: {
                 quarters: {
