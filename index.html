@@ -28,7 +28,7 @@
       <div id="manualField" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
 
       <label for="manualCash" class="block text-gray-700">Manual Cash Amount:</label>
-      <input type="number" id="manualCash" class="w-full p-2 border rounded" min="0" value ="0" oninput="validateNumberInput(this)">
+      <input id="manualCash" class="w-full p-2 border rounded" min="0">
     </fieldset>
 
 
@@ -57,7 +57,7 @@
       <div id="lotteryFields" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
 
       <label for="lotteryRandom" class="block text-gray-700">Lottery Random Amount:</label>
-      <input type="number" id="lotteryRandom" class="w-full p-2 border rounded" min="0" max="10000" value="0" oninput="validateNumberInput(this)">
+      <input type="number" id="lotteryRandom" class="w-full p-2 border rounded" min="0" oninput="validateNumberInput(this)">
     </fieldset>
 
 

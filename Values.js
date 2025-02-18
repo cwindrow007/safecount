@@ -48,7 +48,7 @@ const fields = {
 
 /** Validation function which prevents non-numeric input* */
 function validateNumberInput(input){
-        input.value = input.value.replace(/[^0-9]/g, '');
+        input.value = Math.max(0, input.value.replace(/[^0-9]/g, ''));
 }
 
 document.querySelectorAll('input[type="number"]') .forEach(input => {
