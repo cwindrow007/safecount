@@ -8,25 +8,25 @@ const fields = {
         coins: {
                 quarters: {
                         ids: ["box500", "tray100", "rolls"],
-                        labels: ["Box ($500)", "Tray ($100)", "Rolls"],
+                        labels: ["Box ($500)", "Tray ($100)", "Rolls ($10)"],
                         values: [500, 100, 10],
                         max: [10, 10, 9]
                 },
                 dimes: {
                         ids: ["box250", "tray100", "rolls"],
-                        labels: ["Box ($250)", "Tray ($100)", "Rolls"],
+                        labels: ["Box ($250)", "Tray ($100)", "Rolls ($5)"],
                         values: [250, 100, 5],
                         max: [10, 10, 19]
                 },
                 nickels: {
                         ids: ["box100", "tray20", "rolls"],
-                        labels: ["Box ($100)", "Tray ($20)", "Rolls"],
+                        labels: ["Box ($100)", "Tray ($20)", "Rolls ($2)"],
                         values: [100, 20, 2],
                         max: [10, 10, 9]
                 },
                 pennies: {
                         ids: ["box25", "tray10", "rolls"],
-                        labels: ["Box ($25)", "Tray ($10)", "Rolls"],
+                        labels: ["Box ($25)", "Tray ($10)", "Rolls (50\u00A2)"],
                         values: [25, 10, 0.5],
                         max: [10, 10, 19]
                 }
@@ -77,19 +77,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Populate Coins Section
         const coinContainer = document.getElementById("coinFields");
+
         Object.entries(fields.coins).forEach(([coinType, { ids, labels, max }]) => {
+                //Header for each coin type
+                const section = document.createElement("div");
+                section.classList.add("p-3", "bg-gray-100", "rounded-lg");
+
+                const title = document.createElement("h3");
+                title.classList.add("font-semibold", "text-lg", "mb-2", "text-gray-700");
+                title.textContent = coinType.charAt(0).toUpperCase() + coinType.slice(1);
+
+                section.appendChild(title);
+
                 ids.forEach((id, index) => {
                         const fullId = `${coinType}-${id}`;
                         const div = document.createElement("div");
-                        div.classList.add("w-full", "p-2");
+                        div.classList.add("w-full", "p-1");
+
                         div.innerHTML = `
-                <label class="block text-gray-700">${coinType.charAt(0).toUpperCase() + coinType.slice(1)} - ${labels[index]}:</label>
-                <select id="${fullId}" class="w-full p-2 border rounded"></select>
-            `;
-                        coinContainer.appendChild(div);
-                        populateSelect(fullId, { start: 0, end: max[index], step: 1 });
+                        <label class="block text-gray-700">${labels[index]}:</label>
+                        <select id="${fullId}" class="w-full p-2 border rounded"></select>
+                        `;
+
+                        section.appendChild(div);
+                        coinContainer.appendChild(section);
+                        populateSelect(fullId, {start: 0, end: max[index], step:1});
                 });
+                
         });
+
 
 
         const stampsContainer = document.getElementById("stampFields");
