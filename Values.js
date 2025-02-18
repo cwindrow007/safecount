@@ -4,9 +4,7 @@
 
 /** Data Structure for fields */
 const fields = {
-        bandedCash: { start: 0, end: 15, step: 1 },
-        singles: { start: 0, end: 15, step: 1 },
-        fives: { start: 0, end: 15, step: 1 },
+        bandedCash: { start: 0, end: 20, step: 1 },
         coins: {
                 quarters: {
                         ids: ["box500", "tray100", "rolls"],
@@ -48,6 +46,19 @@ const fields = {
         }
 };
 
+/** Validation function which prevents non-numeric input* */
+function validateNumberInput(input){
+        input.value = input.value.replace(/[^0-9]/g, '');
+}
+
+document.querySelectorAll('input[type="number"]') .forEach(input => {
+        input.addEventListener('keydown', function(e) {
+                if(e.key ==="e"|| e.key ==="-" || e.key === "+"){
+                        e.preventDefault()
+                }
+        });
+})
+
 /** Utility function to populate select dropdowns */
 function populateSelect(id, { start, end, step }) {
         const select = document.getElementById(id);
@@ -56,10 +67,13 @@ function populateSelect(id, { start, end, step }) {
         }
 }
 
+
+
+
 /** Populate all Fields */
 document.addEventListener("DOMContentLoaded", () => {
-        // Populate Banded Cash, Singles, and Fives
-        ["bandedCash", "singles", "fives"].forEach(field => populateSelect(field, fields[field]));
+        // Populate Banded Cash
+        ["bandedCash"].forEach(field => populateSelect(field, fields[field]));
 
         // Populate Coins Section
         const coinContainer = document.getElementById("coinFields");
