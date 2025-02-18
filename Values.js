@@ -50,7 +50,7 @@ const fields = {
 function validateNumberInput(input){
         input.value = Math.max(0, input.value.replace(/[^0-9]/g, ''));
 }
-/** Prevents typing typing letters or negative numbers in field */
+/** Prevents typing letters or negative numbers in field */
 document.querySelectorAll('input[type="number"]') .forEach(input => {
         input.addEventListener('keydown', function(e) {
                 if(e.key ==="e"|| e.key ==="-" || e.key === "+"){
@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /** Helper function to get integer input values */
 const getInt = id => parseInt(document.getElementById(id)?.value) || 0;
+const getFloat = id => parseFloat (document.getElementById(id)?.value) || 0;
 
 /** Calculation logic */
 function calculateSafe() {
@@ -156,7 +157,7 @@ function calculateSafe() {
         //Calculate Total
         const bandedCash = getInt("bandedCash") * 1000;
         const singlesFivesTotal = (getInt("singles") * 100) + (getInt("fives") * 500);
-        const manualCash = getInt("manualCash") || 0;
+        const manualCash = getFloat("manualCash") || 0;
         const grandTotal = bandedCash + coinsTotal + singlesFivesTotal + manualCash + lotteryTotal + stampsTotal;
 
         const results = {
