@@ -6,7 +6,17 @@
 
 /** Validation function which prevents non-numeric input* */
 function validateNumberInput(input){
-    input.value = Math.max(0, input.value.replace(/[^0-9]/g, ''));
+
+        if(input.id === "manualCash"){
+                //Allows numbers and a single decimal point
+                input.value = input.value.replace(/[^0-9.]/g, '');
+                if((input.value.match(/\./g) || []).length > 1){
+                        input.value = input.value.substring(0, input.value.lastIndexOf("."));
+                }
+        } else {
+                //Default case for integer-only fields
+                input.value = input.value.replace(/[^0-9]/g, '');
+        }
 }
 /** Prevents typing letters or negative numbers in field */
 document.querySelectorAll('input[type="number"]').forEach(input => {
@@ -130,7 +140,7 @@ function calculateSafe() {
 
     //Calculate Total
     const bandedCash = getInt("bandedCash") * 1000;
-    const singlesFivesTotal = (getInt("singles") * 100) + (getInt("fives") * 500);
+    const singlesFivesTotal = getInt("singles") + getInt("fives");
     const manualCash = getFloat("manualCash") || 0;
     const grandTotal = bandedCash + coinsTotal + singlesFivesTotal + manualCash + lotteryTotal + stampsTotal;
 
