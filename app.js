@@ -9,7 +9,7 @@ function validateNumberInput(input){
     input.value = Math.max(0, input.value.replace(/[^0-9]/g, ''));
 }
 /** Prevents typing letters or negative numbers in field */
-document.querySelectorAll('input[type="number"]') .forEach(input => {
+document.querySelectorAll('input[type="number"]').forEach(input => {
     input.addEventListener('keydown', function(e) {
             if(e.key ==="e"|| e.key ==="-" || e.key === "+"){
                     e.preventDefault()
