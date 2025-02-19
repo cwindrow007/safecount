@@ -29,7 +29,11 @@
       <div id="manualField" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
 
       <label for="manualCash" class="block text-gray-700">Manual Cash Amount:</label>
-      <input id="manualCash" type="number" class="w-full p-2 border rounded">
+      <input id="manualCash" 
+      inputmode="decimal" 
+      pattern="[0-9]*\.?[0-9*]*"
+      class="w-full p-2 border rounded" 
+      oninput="validateNumberInput(this)">
     </fieldset>
 
 
@@ -38,10 +42,18 @@
       <legend class="font-semibold">Singles and Fives (Bands)</legend>
 
       <label for="singles" class="block">Singles (Bands of $100):</label>
-      <input type = "number" id="singles" class = "w-full p-2 border rounded" min="0" step = "1" oninput="validateNumberInput(this)">
+      <input type = "text" id="singles" 
+      class = "w-full p-2 border rounded" 
+      inputmode="numeric"
+      pattern="[0-9]*"
+      oninput="validateNumberInput(this)">
 
       <label for="fives" class="block mt-2">Fives (Bands of $500):</label>
-      <input type = "number" id="fives" class = "w-full p-2 border rounded" min="0" step = "1" oninput="validateNumberInput(this)">
+      <input type ="text" id="fives" 
+      class = "w-full p-2 border rounded" 
+      inputmode="numeric"
+      pattern="[0-9]*"
+      oninput="validateNumberInput(this)">
     </fieldset>
 
     <!--Stamps-->
