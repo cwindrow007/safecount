@@ -146,6 +146,13 @@ function calculateSafe() {
 
     Object.entries(results).forEach(([id, text]) => (document.getElementById(id).textContent = text));
     document.getElementById("results").classList.remove("hidden");
+
+    //Scroll to the bottom of the page to focus on the results
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+      
 }
 
 document.getElementById("calculateButton").addEventListener("click", calculateSafe);
