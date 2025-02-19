@@ -25,10 +25,10 @@ const fields = {
                         max: [10, 10, 9]
                 },
                 pennies: {
-                        ids: ["box25", "tray10", "rolls"],
-                        labels: ["Box ($25)", "Tray ($10)", "Rolls (50\u00A2)"],
-                        values: [25, 10, 0.5],
-                        max: [10, 10, 19]
+                        ids: ["box25", "tray10", "tray5", "rolls"],
+                        labels: ["Box ($25)", "Tray ($10)", "Half Tray($5)","Rolls (50\u00A2)"],
+                        values: [25, 10, 5, 0.5],
+                        max: [10, 10, 10, 19]
                 }
         },
         stamps: {
