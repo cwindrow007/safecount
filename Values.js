@@ -13,10 +13,10 @@ const fields = {
                         max: [10, 10, 9]
                 },
                 dimes: {
-                        ids: ["box250", "tray100", "rolls"],
-                        labels: ["Box ($250)", "Tray ($100)", "Rolls ($5)"],
-                        values: [250, 100, 5],
-                        max: [10, 10, 19]
+                        ids: ["box250", "tray100", "tray50", "rolls"],
+                        labels: ["Box ($250)", "Tray ($100)", "Half Tray($50)", "Rolls ($5)"],
+                        values: [250, 100, 50, 5],
+                        max: [10, 10, 10, 19]
                 },
                 nickels: {
                         ids: ["box100", "tray20", "rolls"],
