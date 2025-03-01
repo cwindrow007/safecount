@@ -14,7 +14,7 @@ const fields = {
                 },
                 dimes: {
                         ids: ["box250", "tray100", "tray50", "rolls"],
-                        labels: ["Box ($250)", "Tray ($100)", "Half Tray($50)", "Rolls ($5)"],
+                        labels: ["Box ($250)", "Tray ($100)", "Half Tray ($50)", "Rolls ($5)"],
                         values: [250, 100, 50, 5],
                         max: [10, 10, 10, 19]
                 },
@@ -26,7 +26,7 @@ const fields = {
                 },
                 pennies: {
                         ids: ["box25", "tray10", "tray5", "rolls"],
-                        labels: ["Box ($25)", "Tray ($10)", "Half Tray($5)","Rolls (50\u00A2)"],
+                        labels: ["Box ($25)", "Tray ($10)", "Half Tray ($5)","Rolls (50\u00A2)"],
                         values: [25, 10, 5, 0.5],
                         max: [10, 10, 10, 19]
                 }
