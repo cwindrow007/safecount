@@ -20,7 +20,7 @@ jobs:
       - run: npm i axios cheerio
 
       - name: Run scraper
-        run: node updateStampPrice.mjs
+        run: node scripts/updateStampPrice.mjs
 
       - name: Commit if changed
         run: |
