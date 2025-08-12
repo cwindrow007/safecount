@@ -70,7 +70,7 @@ async function loadStampPrice() {
 document.addEventListener("DOMContentLoaded", async () => {
 
     await loadStampPrice();
-    
+
     // Populate Banded Cash
     ["bandedCash"].forEach(field => populateSelect(field, fields[field]));
 
