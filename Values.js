@@ -35,7 +35,7 @@ const fields = {
                 ids: ["stampsFullBook", "stampsQuarterBook"],
                 labels: ["Full Book (100 Stamps)", "Quarter Book (25 stamps)"],
                 values: [100, 25],
-                pricePerStamp: 15.60,
+                pricePerStamp: 0.00,
                 max:[10,10]
         },
         lottery: {

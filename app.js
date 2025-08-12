@@ -35,11 +35,42 @@ function populateSelect(id, { start, end, step }) {
     }
 }
 
+const money = n => n.toLocaleString(undefined,{style:"currency",currency:"USD"});
+
+async function loadStampPrice() {
+    try {
+        // If your Pages site is at root; if it's under /repo-name, use that prefix.
+        const res = await fetch('/stamp-price.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('fetch failed');
+        const data = await res.json();
+        if (Number.isFinite(data.price)) {
+            fields.stamps.pricePerStamp = data.price;
+            localStorage.setItem('stampPrice', String(data.price));
+            const el = document.getElementById('stampPrice');
+            if (el) el.textContent = money(data.price);
+            return;
+        }
+    } catch (_) {
+        // fallback to last good value if present
+        const saved = parseFloat(localStorage.getItem('stampPrice'));
+        if (Number.isFinite(saved)) {
+            fields.stamps.pricePerStamp = saved;
+            const el = document.getElementById('stampPrice');
+            if (el) el.textContent = money(saved);
+            return;
+        }
+    }
+    // last-resort default if nothing else available
+    if (!fields.stamps.pricePerStamp) fields.stamps.pricePerStamp = 0.00;
+}
 
 
 
 /** Populate all Fields */
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+
+    await loadStampPrice();
+    
     // Populate Banded Cash
     ["bandedCash"].forEach(field => populateSelect(field, fields[field]));
 
