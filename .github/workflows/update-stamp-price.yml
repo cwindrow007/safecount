@@ -2,7 +2,7 @@ name: Update stamp price
 
 on:
   schedule:
-    - cron: "30 07 * * *"   # daily ~13:30 UTC
+    - cron: "0 */6 * * *"
   workflow_dispatch:        # allow manual run
 
 jobs:
